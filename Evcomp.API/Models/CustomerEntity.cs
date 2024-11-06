@@ -9,6 +9,6 @@ namespace Evcomp.API.Models
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string Contacts { get; set; } = string.Empty;
-        public ICollection<OrderEntity> Orders { get; set; }
+        public ICollection<OrderEntity> Orders { get; set; } = [];
     }
 }

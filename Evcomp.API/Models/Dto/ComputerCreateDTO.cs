@@ -1,12 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Evcomp.API.Models
+﻿namespace Evcomp.API.Models.Dto
 {
-    public class ComputerEntity
+    public class ComputerCreateDTO
     {
-        [Required]
-        public int Id { get; set; }
-        public string Image { get; set; } = string.Empty;
+        public IFormFile? File { get; set; }
         public string Description { get; set; } = string.Empty;
         public decimal Price { get; set; } = 0;
         public string Processor { get; set; } = string.Empty;
@@ -20,6 +16,5 @@ namespace Evcomp.API.Models
         public string Color { get; set; } = string.Empty;
         public bool HasWiFi { get; set; }
         public bool HasLightingControl { get; set; }
-        public ICollection<OrderEntity> Orders { get; set; } = [];
     }
 }
