@@ -2,6 +2,7 @@
 using Evcomp.API.Data;
 using Evcomp.API.Models;
 using Evcomp.API.Models.Dto;
+using Evcomp.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
@@ -13,11 +14,13 @@ namespace Evcomp.API.Controllers
     public class ComputerController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
+        private readonly IS3Service _s3Service;
         private readonly IMapper _mapper;
         private ApiResponse _response;
-        public ComputerController(ApplicationDbContext db, IMapper mapper)
+        public ComputerController(ApplicationDbContext db, IS3Service s3Service, IMapper mapper)
         {
             _db = db;
+            _s3Service = s3Service;
             _mapper = mapper;
             _response = new ApiResponse();
         }
@@ -65,7 +68,7 @@ namespace Evcomp.API.Controllers
                     }
                     string fileName = $"{Guid.NewGuid()}{Path.GetExtension(computerCreateDTO.File.FileName)}";
                     ComputerEntity computerToCreate = _mapper.Map<ComputerEntity>(computerCreateDTO);
-                    computerToCreate.Image = fileName;
+                    computerToCreate.Image = await _s3Service.UploadFileAsync(fileName, computerCreateDTO.File);
 
                     _db.Computers.Add(computerToCreate);
                     await _db.SaveChangesAsync();
@@ -106,7 +109,8 @@ namespace Evcomp.API.Controllers
                     if (computerUpdateDTO.File != null && computerUpdateDTO.File.Length > 0)
                     {
                         string fileName = $"{Guid.NewGuid()}{Path.GetExtension(computerUpdateDTO.File.FileName)}";
-                        computerFromDb.Image = fileName;
+                        await _s3Service.DeleteFileAsync(fileName);
+                        computerFromDb.Image = await _s3Service.UploadFileAsync(fileName, computerUpdateDTO.File); ;
                     }
                     _db.Update(computerFromDb);
                     await _db.SaveChangesAsync();
