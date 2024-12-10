@@ -1,4 +1,6 @@
-﻿namespace Evcomp.API.Services
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Evcomp.Business.IServices
 {
     public interface IS3Service
     {

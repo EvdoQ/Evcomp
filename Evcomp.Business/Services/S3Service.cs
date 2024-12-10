@@ -1,8 +1,9 @@
-﻿
-using Amazon.S3;
+﻿using Amazon.S3;
 using Amazon.S3.Model;
 using Amazon.S3.Transfer;
 using Evcomp.API.Models;
+using Evcomp.Business.IServices;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
 namespace Evcomp.API.Services

@@ -1,4 +1,6 @@
-﻿namespace Evcomp.API.Models.Dto
+﻿using Microsoft.AspNetCore.Http;
+
+namespace Evcomp.API.Models.Dto
 {
     public class ComputerCreateDTO
     {
