@@ -39,7 +39,7 @@ namespace Evcomp.API.Services
                 CannedACL = S3CannedACL.PublicRead
             });
 
-            return $"https://s3.cloud.ru/bucket-0ada39/{fileName}";
+            return new Uri(new Uri(_awsSettings.ServiceURL), $"{_awsSettings.BucketName}/{fileName}").ToString();
         }
         public async Task<bool> DeleteFileAsync(string fileName)
         {
