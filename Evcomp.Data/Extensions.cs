@@ -12,6 +12,7 @@ namespace Evcomp.Data
         public static IServiceCollection AddDataAccess(this IServiceCollection serviceCollection, IConfiguration configuration)
         {
             serviceCollection.AddScoped<IComputerRepository, ComputerRepository>();
+            serviceCollection.AddScoped<IAuthRepository, AuthRepository>();
             serviceCollection.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseNpgsql(configuration.GetConnectionString("DefaultDbConnection"));

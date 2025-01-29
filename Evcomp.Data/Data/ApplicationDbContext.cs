@@ -9,16 +9,14 @@ namespace Evcomp.API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ComputerConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new OrderConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<ComputerEntity> Computers { get; set; }
-        public DbSet<CustomerEntity> Customers { get; set; }
-        public DbSet<EmployeeEntity> Employees { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
         public DbSet<OrderEntity> Orders { get; set; }
     }
 }

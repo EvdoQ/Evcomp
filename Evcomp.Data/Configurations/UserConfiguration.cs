@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Evcomp.API.Configuration
 {
-    public class CustomerConfiguration : IEntityTypeConfiguration<CustomerEntity>
+    public class UserConfiguration : IEntityTypeConfiguration<UserEntity>
     {
-        public void Configure(EntityTypeBuilder<CustomerEntity> builder)
+        public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
             builder.HasKey(c => c.Id);
             builder
                 .HasMany(c => c.Orders)
-                .WithOne(o => o.Customer)
+                .WithOne(o => o.User)
                 .HasForeignKey(o => o.ComputerId);
         }
     }

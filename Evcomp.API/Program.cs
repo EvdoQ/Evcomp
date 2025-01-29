@@ -1,3 +1,4 @@
+using Evcomp.Business.Services;
 using Evcomp.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDataAccess(builder.Configuration);
 builder.Services.AddBusinessLogic(builder.Configuration);
 builder.Services.AddControllers();
+builder.Services.AddAuth(builder.Configuration);
 
 var app = builder.Build();
 
@@ -19,6 +21,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
