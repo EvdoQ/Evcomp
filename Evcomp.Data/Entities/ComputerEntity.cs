@@ -7,6 +7,8 @@ namespace Evcomp.API.Models
         [Required]
         public int Id { get; set; }
         public string Image { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string ShortDescription { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public decimal Price { get; set; } = 0;
         public string Processor { get; set; } = string.Empty;

@@ -5,6 +5,8 @@ namespace Evcomp.API.Models.Dto
     public class ComputerCreateDTO
     {
         public IFormFile? File { get; set; }
+        public string Title { get; set; } = string.Empty;
+        public string ShortDescription { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public decimal Price { get; set; } = 0;
         public string Processor { get; set; } = string.Empty;
