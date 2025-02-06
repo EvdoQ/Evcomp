@@ -21,7 +21,7 @@ namespace Evcomp.Business.Services
             var claims = new List<Claim>
             {
                 new Claim("userName", user.UserName),
-                new Claim("firstName", user.FirstName),
+                new Claim("fullName", user.FirstName),
                 new Claim("role", user.Role),
                 new Claim("id", user.Id.ToString()),
             };

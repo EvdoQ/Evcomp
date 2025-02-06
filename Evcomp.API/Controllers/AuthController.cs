@@ -34,8 +34,8 @@ namespace Evcomp.API.Controllers
         {
             try
             {
-                var token = await _authService.Login(model);
-                return Ok(token);
+                var response = await _authService.Login(model);
+                return Ok(response);
             }
             catch (Exception ex)
             {

@@ -1,14 +1,12 @@
 ﻿using Evcomp.API.Models;
 using Evcomp.API.Models.Dto;
 using Evcomp.Business.IServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Evcomp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ComputerController : ControllerBase
     {
         private readonly IComputerService _computerService;

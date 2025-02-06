@@ -40,7 +40,7 @@ namespace Evcomp.Business.Services
             return user;
         }
 
-        public async Task<string> Login(LoginRequestDTO model)
+        public async Task<LoginResponseDTO> Login(LoginRequestDTO model)
         {
             var user = await _authRepository.GetUserByUserNameAsync(model.UserName);
             if (user == null)
@@ -48,11 +48,13 @@ namespace Evcomp.Business.Services
                 throw new UnauthorizedAccessException("Invalid username or password.");
             }
 
-            var result = new PasswordHasher<UserEntity>()
+            var passwordVerificationResult = new PasswordHasher<UserEntity>()
                 .VerifyHashedPassword(user, user.PasswordHash, model.Password);
-            if (result == PasswordVerificationResult.Success)
+            if (passwordVerificationResult == PasswordVerificationResult.Success)
             {
-                return _jwtService.GenerateToken(user);
+                var token = _jwtService.GenerateToken(user);
+                var result = new LoginResponseDTO { UserName = model.UserName, Token = token };
+                return result;
             }
             else
             {

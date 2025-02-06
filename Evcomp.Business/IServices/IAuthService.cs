@@ -6,6 +6,6 @@ namespace Evcomp.Business.IServices
     public interface IAuthService
     {
         Task<UserEntity> Register(RegisterRequestDTO model);
-        Task<string> Login(LoginRequestDTO model);
+        Task<LoginResponseDTO> Login(LoginRequestDTO model);
     }
 }
